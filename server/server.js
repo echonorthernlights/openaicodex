@@ -25,7 +25,7 @@ app.post("/codex", async (req, res) => {
     console.log(prompt);
     const response = await openai.createCompletion({
       model: "text-davinci-003",
-      prompt: `${prompt}`,
+      prompt,
       temperature: 0,
       max_tokens: 3000,
       top_p: 1,
@@ -35,7 +35,7 @@ app.post("/codex", async (req, res) => {
     console.log(response);
     return res.status(200).send({ bot: response.data.choices[0].text });
   } catch (error) {
-    console.log(error);
+    //console.log(error);
     res.status(500).send({ error });
   }
 });
